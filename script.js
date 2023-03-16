@@ -1,10 +1,10 @@
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 }
 
 Book.info = function() {
@@ -16,18 +16,20 @@ function addBookToLibrary(book) {
 }
 
 const addBookToDisplay = (book) => {
-    const bookCase = document.querySelector('.books')
+    const bookCase = document.querySelector('.books');
 
-    let bookDiv = document.createElement('div')
-    bookDiv.className = 'book'
+    let bookDiv = document.createElement('div');
+    bookDiv.className = 'book';
 
     const addBookInfo = (book) => {
-        let bookInfo = document.createElement('p')
-        bookInfo.className = 'info'
-        bookTitle.textContent = book.title
-        bookDiv.appendChild(bookTitle)
+        let bookInfo = document.createElement('p');
+        bookInfo.className = 'info';
+        bookTitle.textContent = book.title;
+        bookDiv.appendChild(bookTitle);
     }
 
-    bookCase.appendChild(bookDiv)
+    addBookInfo(book);
+
+    bookCase.appendChild(bookDiv);
 }
 
