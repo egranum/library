@@ -24,8 +24,8 @@ const addBookToDisplay = (book) => {
     const addBookInfo = (book) => {
         let bookInfo = document.createElement('p');
         bookInfo.className = 'info';
-        bookTitle.textContent = book.title;
-        bookDiv.appendChild(bookTitle);
+        bookInfo.textContent = book.title;
+        bookDiv.appendChild(bookInfo);
     }
 
     addBookInfo(book);
@@ -33,3 +33,15 @@ const addBookToDisplay = (book) => {
     bookCase.appendChild(bookDiv);
 }
 
+
+const nameOfTheWind = new Book('The Name Of The Wind', 'Patrick Rothfuss', '662', 'read');
+addBookToLibrary(nameOfTheWind);
+
+const fellowshipOfTheRing = new Book('The Fellowship Of The Ring', 'J.R.R Tolkien', '423', 'read')
+addBookToLibrary(fellowshipOfTheRing);
+
+console.log(myLibrary)
+
+for (const book of myLibrary) {
+    addBookToDisplay(book);
+}
