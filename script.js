@@ -4,11 +4,10 @@ function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
-}
-
-Book.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    read ? (this.read = 'read') : (this.read = 'not read yet')
+    this.info = function() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    }
 }
 
 function addBookToLibrary(book) {
@@ -24,7 +23,7 @@ const addBookToDisplay = (book) => {
     const addBookInfo = (book) => {
         let bookInfo = document.createElement('p');
         bookInfo.className = 'info';
-        bookInfo.textContent = book.title;
+        bookInfo.textContent = book.info();
         bookDiv.appendChild(bookInfo);
     }
 
@@ -34,10 +33,10 @@ const addBookToDisplay = (book) => {
 }
 
 
-const nameOfTheWind = new Book('The Name Of The Wind', 'Patrick Rothfuss', '662', 'read');
+const nameOfTheWind = new Book('The Name Of The Wind', 'Patrick Rothfuss', '662', true);
 addBookToLibrary(nameOfTheWind);
 
-const fellowshipOfTheRing = new Book('The Fellowship Of The Ring', 'J.R.R Tolkien', '423', 'read')
+const fellowshipOfTheRing = new Book('The Fellowship Of The Ring', 'J.R.R Tolkien', '423', true)
 addBookToLibrary(fellowshipOfTheRing);
 
 console.log(myLibrary)
