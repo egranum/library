@@ -32,6 +32,25 @@ const addBookToDisplay = (book) => {
     bookCase.appendChild(bookDiv);
 }
 
+const formElem = document.querySelector("form")
+
+
+formElem.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    let formInfo = new FormData(formElem)
+    let formTitle = formInfo.get("title")
+    let formAuthor = formInfo.get("author")
+    let formPages = formInfo.get("pages")
+    let formRead = document.querySelector("#read")
+    let formReadStatus = formRead.checked
+    formPages = formPages.toString()
+    
+    let formBook = new Book(formTitle, formAuthor, formPages, formReadStatus)
+    
+    addBookToLibrary(formBook)
+    addBookToDisplay(formBook)
+})
 
 const nameOfTheWind = new Book('The Name Of The Wind', 'Patrick Rothfuss', '662', true);
 addBookToLibrary(nameOfTheWind);
