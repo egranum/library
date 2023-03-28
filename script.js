@@ -53,6 +53,7 @@ formElem.addEventListener("submit", (e) => {
     
     addBookToLibrary(formBook)
     addBookToDisplay(formBook)
+    formElem.reset()
     formElem.classList.add('hideform')
 })
 
