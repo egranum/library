@@ -50,6 +50,7 @@ formElem.addEventListener("submit", (e) => {
     
     addBookToLibrary(formBook)
     addBookToDisplay(formBook)
+    formElem.classList.add('hideform')
 })
 
 const nameOfTheWind = new Book('The Name Of The Wind', 'Patrick Rothfuss', '662', true);
