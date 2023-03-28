@@ -32,8 +32,11 @@ const addBookToDisplay = (book) => {
     bookCase.appendChild(bookDiv);
 }
 
+
 const formElem = document.querySelector("form")
 
+const showFormButton = document.querySelector('.book button')
+showFormButton.addEventListener('click', (e) => {formElem.classList.toggle('hideform')})
 
 formElem.addEventListener("submit", (e) => {
     e.preventDefault();
