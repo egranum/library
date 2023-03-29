@@ -37,9 +37,19 @@ const addBookToDisplay = (book) => {
         bookInfo.textContent = book.info();
         let readInfo = document.createElement('p')
         readInfo.className = 'info';
+        readInfo.classList.add('readStatus')
         readInfo.textContent = book.readStatus();
         bookDiv.appendChild(bookInfo);
         bookDiv.appendChild(readInfo);
+
+        let changeButton = document.createElement('button');
+        changeButton.className = 'changeButton'
+        changeButton.textContent = 'change read status'
+        changeButton.onclick = (e) => {
+            book.changeReadStatus()
+            readInfo.textContent = book.readStatus()
+        }
+        bookDiv.appendChild(changeButton)
     }
 
     addBookInfo(book);
