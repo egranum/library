@@ -5,8 +5,19 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     read ? (this.read = 'read') : (this.read = 'not read yet')
+
     this.info = function() {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+        return `${this.title} 
+        by ${this.author}, 
+        ${this.pages} pages,`
+    }
+
+    this.readStatus = function() {
+        return `${this.read}`
+    }
+
+    this.changeReadStatus = function() {
+        return this.read === 'read' ? this.read = 'not read yet' : this.read = 'read'
     }
 }
 
@@ -24,7 +35,11 @@ const addBookToDisplay = (book) => {
         let bookInfo = document.createElement('p');
         bookInfo.className = 'info';
         bookInfo.textContent = book.info();
+        let readInfo = document.createElement('p')
+        readInfo.className = 'info';
+        readInfo.textContent = book.readStatus();
         bookDiv.appendChild(bookInfo);
+        bookDiv.appendChild(readInfo);
     }
 
     addBookInfo(book);
