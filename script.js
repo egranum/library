@@ -30,6 +30,18 @@ const addBookToDisplay = (book) => {
 
     let bookDiv = document.createElement('div');
     bookDiv.className = 'book';
+    bookDiv.dataset.entry = myLibrary.indexOf(book)
+
+    const updateEntryIndex = () => {
+        let bookDivs = bookCase.getElementsByClassName('book')
+        console.log(bookDivs)
+            for (const div of bookDivs) {
+                let newIndex = myLibrary.findIndex(item => item.title === book.title)
+                //let newIndex = myLibrary.indexOf(book)
+                console.log(newIndex)
+                div.dataset.entry = newIndex 
+            }
+    }
 
     const addBookInfo = (book) => {
         let bookInfo = document.createElement('p');
@@ -50,6 +62,20 @@ const addBookToDisplay = (book) => {
             readInfo.textContent = book.readStatus()
         }
         bookDiv.appendChild(changeButton)
+
+        let removeButton = document.createElement('button')
+        removeButton.className = 'removeButton'
+        removeButton.textContent = 'remove book'
+        bookDiv.appendChild(removeButton)
+        removeButton.onclick = (e) => {
+            let index = myLibrary.findIndex(e => e.title === myLibrary.title)
+            let removed = myLibrary.splice(index, 1);
+            console.log(myLibrary)
+
+            removeButton.parentNode.remove()
+            
+            updateEntryIndex()
+        }
     }
 
     addBookInfo(book);
