@@ -30,20 +30,12 @@ const addBookToDisplay = (book) => {
 
     let bookDiv = document.createElement('div');
     bookDiv.className = 'book';
-    bookDiv.dataset.entry = myLibrary.indexOf(book)
+    
 
-    const updateEntryIndex = () => {
-        let bookDivs = bookCase.getElementsByClassName('book')
-        console.log(bookDivs)
-            for (const div of bookDivs) {
-                let newIndex = myLibrary.findIndex(item => item.title === book.title)
-                //let newIndex = myLibrary.indexOf(book)
-                console.log(newIndex)
-                div.dataset.entry = newIndex 
-            }
-    }
+    
 
     const addBookInfo = (book) => {
+        bookDiv.dataset.entry = myLibrary.indexOf(book)
         let bookInfo = document.createElement('p');
         bookInfo.className = 'info';
         bookInfo.textContent = book.info();
@@ -68,11 +60,29 @@ const addBookToDisplay = (book) => {
         removeButton.textContent = 'remove book'
         bookDiv.appendChild(removeButton)
         removeButton.onclick = (e) => {
-            let index = myLibrary.findIndex(e => e.title === myLibrary.title)
+            let index = myLibrary.findIndex(e => e.title === book.title)
+            console.log(index)
             let removed = myLibrary.splice(index, 1);
             console.log(myLibrary)
 
             removeButton.parentNode.remove()
+
+            const updateEntryIndex = () => {
+                const bookDivs = bookCase.childNodes
+                console.log(bookDivs)
+
+                bookDivs.forEach(function (bookDiv) {
+                    console.log(bookDiv.firstChild.textContent)
+                    function matchingInfo(book) {
+                        if (bookDiv.firstChild.textContent === book.info()) {
+                            return true
+                        }
+                    }
+                    let newIndex = myLibrary.findIndex(matchingInfo)
+                    console.log(newIndex)
+                    bookDiv.dataset.entry = newIndex
+                })
+            }
             
             updateEntryIndex()
         }
