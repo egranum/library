@@ -30,9 +30,6 @@ const addBookToDisplay = (book) => {
 
     let bookDiv = document.createElement('div');
     bookDiv.className = 'book';
-    
-
-    
 
     const addBookInfo = (book) => {
         bookDiv.dataset.entry = myLibrary.indexOf(book)
@@ -61,25 +58,20 @@ const addBookToDisplay = (book) => {
         bookDiv.appendChild(removeButton)
         removeButton.onclick = (e) => {
             let index = myLibrary.findIndex(e => e.title === book.title)
-            console.log(index)
-            let removed = myLibrary.splice(index, 1);
-            console.log(myLibrary)
+            myLibrary.splice(index, 1);
 
             removeButton.parentNode.remove()
 
             const updateEntryIndex = () => {
                 const bookDivs = bookCase.childNodes
-                console.log(bookDivs)
 
                 bookDivs.forEach(function (bookDiv) {
-                    console.log(bookDiv.firstChild.textContent)
                     function matchingInfo(book) {
                         if (bookDiv.firstChild.textContent === book.info()) {
                             return true
                         }
                     }
                     let newIndex = myLibrary.findIndex(matchingInfo)
-                    console.log(newIndex)
                     bookDiv.dataset.entry = newIndex
                 })
             }
@@ -92,7 +84,6 @@ const addBookToDisplay = (book) => {
 
     bookCase.appendChild(bookDiv);
 }
-
 
 const formElem = document.querySelector("form")
 
